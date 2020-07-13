@@ -13,7 +13,7 @@ RA: 20038441-5
 
 struct livro{
 	int codigo;
-	char titulo[50];
+	char titulo[100];
 	char autor[30];
 	char area[30];
 	int ano;
@@ -72,6 +72,54 @@ int main() {
 				}
 			}			
 		}
+		else{
+			if (op == 3){
+				system("cls");
+				printf("Digite o código que deseja buscar: ");
+				scanf("%d", &busca);
+				i = 0;
+				acha = 0;
+				while ((i<TAM) && (acha == 0)){
+					if (ficha[i].codigo == busca){
+						acha = 1;
+					}
+					else{
+						i++;
+					}
+					if (acha == 1){
+						printf("\nCÓDIGO: %d\n", ficha[i].codigo);
+						printf("TÍTULO: %s\n", ficha[i].titulo);
+						printf("AUTOR: %s\n", ficha[i].autor);
+						printf("ÁREA: %s\n", ficha[i].area);
+						printf("ANO: %d\n", ficha[i].ano);
+						printf("EDITORA: %s\n\n", ficha[i].editora);
+					}
+					else{
+						printf("\n Registro não encontrado");
+					}
+				}
+			}
+		}
+		else{
+			if (op == 4){
+				system("cls");
+				for (i=0; i<TAM-1; i++){
+					for (j=i+1; j<TAM; j++){
+						if (ficha[i].ano > ficha[j].ano){
+							troca = ficha[i];
+							ficha[i] = ficha[j];
+							ficha[j] = troca;
+						}
+					}
+				}
+				for (i=0; i<TAM; i++){
+					printf("\n CÓDIGO: %d, TÍTULO: %s, ANO: %d\n\n", ficha[i].codigo, ficha[i].titulo, ficha[i].ano);
+					
+				}
+			}
+		}
 	}
+	
+	return (0);
 	
 }
