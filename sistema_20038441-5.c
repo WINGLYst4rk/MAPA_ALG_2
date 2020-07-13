@@ -63,7 +63,12 @@ int main() {
 			if (op == 2){
 				system("cls");
 				for (i=0; i<TAM; i++){
-					
+					printf("\nCÓDIGO: %d\n", ficha[i].codigo);
+					printf("TÍTULO: %s\n", ficha[i].titulo);
+					printf("AUTOR: %s\n", ficha[i].autor);
+					printf("ÁREA: %s\n", ficha[i].area);
+					printf("ANO: %d\n", ficha[i].ano);
+					printf("EDITORA: %s\n\n", ficha[i].editora);
 				}
 			}			
 		}
