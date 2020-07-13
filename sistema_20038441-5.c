@@ -7,8 +7,9 @@ RA: 20038441-5
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+#include <stdlib.h>
 
-#define TAM 20
+#define TAM 2
 
 struct livro{
 	int codigo;
