@@ -70,9 +70,7 @@ int main() {
 					printf("ANO: %d\n", ficha[i].ano);
 					printf("EDITORA: %s\n\n", ficha[i].editora);
 				}
-			}			
-		}
-		else{
+			}else{
 			if (op == 3){
 				system("cls");
 				printf("Digite o código que deseja buscar: ");
@@ -98,9 +96,7 @@ int main() {
 						printf("\n Registro não encontrado");
 					}
 				}
-			}
-		}
-		else{
+			}	else{
 			if (op == 4){
 				system("cls");
 				for (i=0; i<TAM-1; i++){
@@ -118,7 +114,11 @@ int main() {
 				}
 			}
 		}
-	}
+	}			
+		}
+		}
+	
+		
 	
 	return (0);
 	
