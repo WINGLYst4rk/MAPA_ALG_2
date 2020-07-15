@@ -18,19 +18,31 @@ typedef struct cadastro
 	int lote;	
 }CadastroLivro;
 
+void indentificacao(){
+	system("cls");
+	int t;
+	for(t=0; t<80; t++) printf("-");
+	printf("\n >>>>> WINGLY SILVA RODRIGUES <<<<<");
+	printf("\n >>>>> RA: 20038441-5 <<<<<");
+	printf("\n >>>>> Engenharia de Software <<<<< \n");
+	for(t=0; t<80; t++) printf("-");
+}
+//prototipação de funções
+
+
 //função principal
 
 int main()
 {
-	Cadastrolivro livro[MAX];
+	//Cadastrolivro livro[MAX];
 	setlocale(LC_ALL, "");
 	
 	int op, buscaLote, buscaCategoria;
-	do{
+//	do{
 		indentificacao();
 		printf("\n1 - Cadastrar Livro");
 		printf("\n2 - Cadastrar Revista");
-		printf("\n3 - Listar todos os produtos")
+		printf("\n3 - Listar todos os produtos");
 		
-	}
+	//}
 }
