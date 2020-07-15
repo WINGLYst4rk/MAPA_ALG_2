@@ -9,3 +9,28 @@ RA: 20038441-5
 #include <stdlib.h>
 #define max 100
 
+//declaração do struct
+typedef struct cadastro
+{
+	char descricao[50];
+	int quantidade;
+	int categoria;
+	int lote;	
+}CadastroLivro;
+
+//função principal
+
+int main()
+{
+	Cadastrolivro livro[MAX];
+	setlocale(LC_ALL, "");
+	
+	int op, buscaLote, buscaCategoria;
+	do{
+		indentificacao();
+		printf("\n1 - Cadastrar Livro");
+		printf("\n2 - Cadastrar Revista");
+		printf("\n3 - Listar todos os produtos")
+		
+	}
+}
