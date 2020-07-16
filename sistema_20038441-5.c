@@ -40,11 +40,11 @@ void CadastrarObras(CadastroObras obras[MAX]){
 	int i;
 	FILE *arq;
 	
-	arq = fopen("arquivo.txt", "a");
+	arq = fopen("arquivo.txt", "a+");
 	
 	if(arq != NULL)
 	{
-		for(i = 0; i < 2; i++){
+		for(i = 0; i < 1; i++){
 			printf("\n Informe o Título do livro: ");
 			fflush(stdin);
 			gets(obras[i].titulo);
@@ -57,17 +57,63 @@ void CadastrarObras(CadastroObras obras[MAX]){
 			printf("\n Digite o ISBN do livro: ");
 			fflush(stdin);
 			gets(obras[i].isbn);
+			printf("\n Informe a editora: ");
+			fflush(stdin);
+			gets(obras[i].editora);
+			printf("\n Informe o ano do livro: ");
+			fflush(stdin);
+			scanf("%d", &obras[i].ano);
+			printf("\n Informe a quantidade de livros: ");
+			fflush(stdin);
+			scanf("%d", &obras[i].quantidade);
+			printf("\n Informe a caixa para amarzenar o livro: ");
+			fflush(stdin);
+			scanf("%d", &obras[i].caixa);
+			fwrite(&obras[i], sizeof (CadastroObras), 1, arq);
+			
+		}fclose(arq);
+	}else{
+		printf("\n O arquino não pode ser aberto.");
+		exit(1);
+	}
+}
+
+//função responsavel pelo registo 
+int Registro(CadastroObras obras[MAX]){
+	FILE *arq;
+	arq = fopen("arquivo.txt", "r");
+	
+	if(arq != NULL)
+	{
+		int contador = 0;
+		
+		while(1)
+		{
+			CadastroObra ob;
 			
 			
-		}
+			int registro = fread(&ob, sizeof (CadastroObras), 1, arq);
+			
+			if(registro < 1){
+				breack;
+			}else{
+				obras[contador] = ob;
+				ob++;
+			}
+		}fclose(arq);
+		return contador;
+	}else{
+		printf("\n O arquivo não pode ser aberto.");
+		exit(1);
 	}
 }
 
 //função principal
 int main(){
+	CadastroObras obras[MAX];
 	setlocale(LC_ALL,"");
 	indentificacao();
-	CadastrarObras("teste");
+	CadastrarObras(obras);
 }
 
 
