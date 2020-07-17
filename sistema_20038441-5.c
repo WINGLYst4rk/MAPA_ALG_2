@@ -41,7 +41,7 @@ void identificacao(){
 	for(t = 0; t < 80; t++) printf("-");
 }
 
-//função main
+//função principal
 int main
 {
 	CadastroObras obras[MAX];
@@ -97,13 +97,13 @@ void cadastrarObras(CadstroObras obras[MAX])
 	int i, es;
 	FILE * arq;
 	
-	arq = fopen("arquivo.txt", "a+");
+	arq = fopen("arquivo.txt", "a+");// função responsavel por abrir ou criar o arquivo para armazenar os dados
 	
 	if(arq != NULL)
 	{
 		printf("Digite [1] Livro [2] Revista: ");
 		scanf("%d", &es);
-		switch(es){
+		switch(es){// Usando switch case para fazer a decisão entre cadastrar livro ou revista
 			case 1:
 				for(i = 0; i < 2; i++){
 					printf("Informe os dados do livro:");
@@ -164,6 +164,37 @@ void cadastrarObras(CadstroObras obras[MAX])
 				}
 				fclose(arq);
 		}
+	}
+	else
+	{
+		printf("\nNão foi possível abrir o arquivo!");
+		exit(1);
+	}
+}
+
+//função para registrar os dados cadastrados
+int registrador(CadastroObras obras[MAX])
+{
+	FILE * arq = fopen("arquivo.txt", "r");// abrindo o arquivo em forma de leitura
+	if(arq != NULL)
+	{
+		int contador = 0;
+		while(1)// usando while para percorrer o arquivo e caso não tiver mais registro termina o laço
+		{
+			CadastroObras ob;// registro temporario de dados
+			
+			//usando fread para ler e armazenar os dados na variável "registro"
+			int registro = fread(&ob, sizeof(CadastroObras), 1, arq);
+			
+			//caso seja retornado 0 o laço termina e paramos de ler o arquivo
+			if(registro < 1)
+				break;
+			else
+				obras[contador] = ob;// armazenando o registro lido no vetor de obras
+			contador++;
+		}
+		fclose(arq);
+		return contador;
 	}
 	else
 	{
