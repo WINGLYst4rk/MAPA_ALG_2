@@ -47,7 +47,7 @@ int main
 	CadastroObras obras[MAX];
 	setlocale(LC_ALL, "");
 	
-	int op, buscaLivro, buscaCaixa;
+	int op, buscaLivro, buscaRevista, buscaCaixa;
 	do{
 		identificacao();
 		printf("\n1 - Cadastrar obras:");
