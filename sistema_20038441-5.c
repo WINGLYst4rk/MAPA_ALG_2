@@ -16,18 +16,19 @@ typedef struct cadastro
 	char autor[30];
 	char editora[30];
 	int quantidade;
-	int area;
+	char area[30];
 	int ano;
 	int edicao;
 	int caixa;
+	int RouL;// responsável por separar livro de revista
 }CadastroObras;
 
 //prototipação das funções
 void cadastrarObras(CadastroObras obras[MAX]);
 void ListarTodasObras(CadastroObras obras[MAX]);
-void ListarObrasCaixa(CadastoObras obras[MAX]);
-void ListarTodasRevistas(CadastroObras obras[MAX]);
-void ListarTodosLivros(CadastroObras obras[MAX]);
+void ListarObrasCaixa(int buscaCaixa, CadastroObras obras[MAX]);
+void ListarTodasRevistas(int buscaCategoria, CadastroObras obras[MAX]);
+void ListarTodosLivros(int buscaCategoria, CadastroObras obras[MAX]);
 int registrador(CadastroObras obras[MAX]);
 
 // função para identificação
@@ -42,18 +43,19 @@ void identificacao(){
 }
 
 //função principal
-int main
+int main()
 {
 	CadastroObras obras[MAX];
 	setlocale(LC_ALL, "");
 	
-	int op, buscaLivro, buscaRevista, buscaCaixa;
+	int op, buscaCategoria, buscaCaixa;
 	do{
 		identificacao();
 		printf("\n1 - Cadastrar obras:");
 		printf("\n2 - Listar todos os Livros:");
-		printf("\n3 - Listar todos os livros:");
+		printf("\n3 - Listar todas as Revistas:");
 		printf("\n4 - Listar obras por caixa:");
+		printf("\n5 - Listar Todas as Obras:");
 		printf("\n0 - Sair: ");
 		scanf("%d", &op);
 		
@@ -62,17 +64,31 @@ int main
 				cadastrarObras(obras);
 				break;
 			case 2:
-				ListarTodosLivros(obras);
+				printf("Digite [1] para listar todos os livros: ");
+				fflush(stdin);
+				scanf("%d", &buscaCategoria);
+				ListarTodosLivros(buscaCategoria, obras);
 				printf("\n");
 				system("pause");
 				break;
 			case 3:
-				ListarTodasRevistas(obras);
+				printf("Digite [2] para listar todas as revistas: ");
+				fflush(stdin);
+				scanf("%d", &buscaCategoria);
+				ListarTodasRevistas(buscaCategoria, obras);
 				printf("\n");
 				system("pause");
 				break;
 			case 4:
-				ListarObrasCaixa(obras);
+				printf("Digite a caixa para pesquisar: ");
+				fflush(stdin);
+				scanf("%d", &buscaCaixa);
+				ListarObrasCaixa(buscaCaixa, obras);
+				printf("\n");
+				system("pause");
+				break;
+			case 5:
+				ListarTodasObras(obras);
 				printf("\n");
 				system("pause");
 				break;
@@ -91,7 +107,7 @@ int main
 }
 
 //função para cadstro de obras
-void cadastrarObras(CadstroObras obras[MAX])
+void cadastrarObras(CadastroObras obras[MAX])
 {
 	identificacao();
 	int i, es;
@@ -108,7 +124,7 @@ void cadastrarObras(CadstroObras obras[MAX])
 				for(i = 0; i < 2; i++){
 					printf("Informe os dados do livro:");
 					printf("\n Digite o Título do livro: ");
-					fflush(stdiin);
+					fflush(stdin);
 					gets(obras[i].titulo);
 					printf("\n Digite o Autor do Livro: ");
 					fflush(stdin);
@@ -130,6 +146,8 @@ void cadastrarObras(CadstroObras obras[MAX])
 					gets(obras[i].editora);
 					printf("\n Informe a Caixa onde o livro está armazenado: ");
 					scanf("%d", &obras[i].caixa);
+					printf("\n Digite [1] para confirmar: ");
+					scanf("%d", &obras[i].RouL);
 					fwrite(&obras[i], sizeof(CadastroObras), 1, arq);	
 					
 				}
@@ -138,7 +156,7 @@ void cadastrarObras(CadstroObras obras[MAX])
 				for(i = 0; i < 2; i++){
 					printf("Informe os dados da revista:");
 					printf("\n Digite o Título da Revista: ");
-					fflush(stdiin);
+					fflush(stdin);
 					gets(obras[i].titulo);
 					printf("\n Digite o Autor da Revista: ");
 					fflush(stdin);
@@ -160,7 +178,41 @@ void cadastrarObras(CadstroObras obras[MAX])
 					gets(obras[i].editora);
 					printf("\n Informe a Caixa onde a Revista está armazenada: ");
 					scanf("%d", &obras[i].caixa);
+					printf("\n Digite [2] para confirmar: ");
+					fflush(stdin);
+					scanf("%d", &obras[i].RouL);
 					fwrite(&obras[i], sizeof(CadastroObras), 1, arq);	
+				}
+				fclose(arq);
+			default:
+				for(i = 0; i < 2; i++){
+					printf("Informe os dados do livro:");
+					printf("\n Digite o Título do livro: ");
+					fflush(stdin);
+					gets(obras[i].titulo);
+					printf("\n Digite o Autor do Livro: ");
+					fflush(stdin);
+					gets(obras[i].autor);
+					printf("\n Digite a Área do Livro: ");
+					fflush(stdin);
+					gets(obras[i].area);
+					printf("\n Digite a Quantidade de Livros: ");
+					fflush(stdin);
+					scanf("%d", &obras[i].quantidade);
+					printf("\n Digite o Ano do livro: ");
+					fflush(stdin);
+					scanf("%d", &obras[i].ano);
+					printf("\n Digite a edição do Livro: ");
+					fflush(stdin);
+					scanf("%d", &obras[i].edicao);
+					printf("\n Digite a Editora: ");
+					fflush(stdin);
+					gets(obras[i].editora);
+					printf("\n Informe a Caixa onde o livro está armazenado: ");
+					scanf("%d", &obras[i].caixa);
+					printf("\n Digite [1] para confirmar: ");
+					scanf("%d", &obras[i].RouL);
+					fwrite(&obras[i], sizeof(CadastroObras), 1, arq);
 				}
 				fclose(arq);
 		}
@@ -200,5 +252,93 @@ int registrador(CadastroObras obras[MAX])
 	{
 		printf("\nNão foi possível abrir o arquivo!");
 		exit(1);
+	}
+}
+
+//função para buscar todas obras
+void ListarTodasObras(CadastroObras obras[MAX])
+{
+	identificacao();
+	
+	int quantidadeObras = registrador(obras);
+	int i;
+	
+	printf("\n>>>> Lista de obras <<<< %d\n", quantidadeObras);
+	
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| AREA \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	for(i = 0; i < quantidadeObras; i++)
+	{
+		printf("\n %d", i);
+		printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].area, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+	}
+}
+
+//função de buscar livro
+void ListarTodosLivros(int buscaCategoria, CadastroObras obras[MAX])
+{
+	identificacao();
+	
+	int quantidadeObras = registrador(obras);
+	int i;
+	
+	printf("\n>>>> Lista de Livros <<<<\n");
+	if(buscaCategoria == 1){
+		printf("Mostrando todos os livros\n");
+	}else if(buscaCategoria == 2){
+		printf("Mostrando todas as revistas\n");
+	}else{
+		printf("Não existe essa categoria\n");
+	}
+	
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| AREA \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	for(i = 0; i < quantidadeObras; i++)
+	{
+		if(obras[i].RouL == buscaCategoria){
+			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].area, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+		}
+	}
+}
+
+//função de buscar revista
+void ListarTodasRevistas(int buscaCategoria, CadastroObras obras[MAX])
+{
+		identificacao();
+	
+	int quantidadeObras = registrador(obras);
+	int i;
+	
+	printf("\n>>>> Lista de Livros <<<<\n");
+	if(buscaCategoria == 1){
+		printf("Mostrando todos os livros\n");
+	}else if(buscaCategoria == 2){
+		printf("Mostrando todas as revistas\n");
+	}else{
+		printf("Não existe essa categoria\n");
+	}
+	
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| AREA \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	for(i = 0; i < quantidadeObras; i++)
+	{
+		if(obras[i].RouL == buscaCategoria){
+			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].area, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+		}
+	}
+}
+
+//função para listar todas as obras por caixa
+void ListarObrasCaixa(int buscaCaixa, CadastroObras obras[MAX])
+{
+	int quantidadeObras = registrador(obras);
+	int i;
+	
+	printf("\n>>>> Lista de livro por caixa <<<< \n");
+	printf("Caixa pesquisada: %d \n", buscaCaixa);
+	
+		printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| AREA \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	for(i = 0; i < quantidadeObras; i++)
+	{
+		if(obras[i].caixa == buscaCaixa){
+			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].area, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+		}
 	}
 }
