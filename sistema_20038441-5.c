@@ -2,6 +2,7 @@
 //link para o repositorio no Github: https://github.com/WINGLYst4rk/MAPA_ALG_2
 //@author: Wingly Silva Rodrigues
 //RA: 20038441-5
+//Uso ideal do console ao executar: 164 largura X 32 Altura.
 
 //incialização das bibliotecas necessarias para a criação do código a ser desenvolvido.
 #include <stdio.h>
@@ -93,12 +94,12 @@ int main()
 				system("pause");
 				break;
 			case 0:
-				printf("Saindo do sistema!");
-				printf("\n Obrigado!!!");
+				printf("Saindo do sistema!\n");
+				printf("\n Obrigado!!!\n");
 				system("pause");
 				break;
 			default:
-				printf("Opção não identificada");
+				printf("Opção não identificada\n");
 				system("pause");
 				break;
 		}
@@ -117,7 +118,7 @@ void cadastrarObras(CadastroObras obras[MAX])
 	
 	if(arq != NULL)
 	{
-		printf("Digite [1] Livro [2] Revista: ");
+		printf("\n Digite [1] Livro [2] Revista: ");
 		scanf("%d", &es);
 		switch(es){// Usando switch case para fazer a decisão entre cadastrar livro ou revista
 			case 1:
@@ -184,7 +185,7 @@ void cadastrarObras(CadastroObras obras[MAX])
 					fwrite(&obras[i], sizeof(CadastroObras), 1, arq);	
 				}
 				fclose(arq);
-			default:
+			default:// usando o default para evitar repetição.
 				for(i = 0; i < 2; i++){
 					printf("Informe os dados do livro:");
 					printf("\n Digite o Título do livro: ");
