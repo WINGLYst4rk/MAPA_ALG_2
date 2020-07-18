@@ -131,7 +131,7 @@ void cadastrarObras(CadastroObras obras[MAX])
 					printf("\n Digite o Autor do Livro: ");
 					fflush(stdin);
 					gets(obras[i].autor);
-					printf("\n Digite a Área do Livro: ");
+					printf("\n Digite a Isbn do Livro: ");
 					fflush(stdin);
 					gets(obras[i].isbn);
 					printf("\n Digite a Quantidade de Livros: ");
@@ -163,7 +163,7 @@ void cadastrarObras(CadastroObras obras[MAX])
 					printf("\n Digite o Autor da Revista: ");
 					fflush(stdin);
 					gets(obras[i].autor);
-					printf("\n Digite a Área da Revista: ");
+					printf("\n Digite a Issn da Revista: ");
 					fflush(stdin);
 					gets(obras[i].issn);
 					printf("\n Digite a Quantidade de Revistas: ");
@@ -195,7 +195,7 @@ void cadastrarObras(CadastroObras obras[MAX])
 					printf("\n Digite o Autor do Livro: ");
 					fflush(stdin);
 					gets(obras[i].autor);
-					printf("\n Digite a Área do Livro: ");
+					printf("\n Digite a Isbn do Livro: ");
 					fflush(stdin);
 					gets(obras[i].isbn);
 					printf("\n Digite a Quantidade de Livros: ");
@@ -267,11 +267,11 @@ void ListarTodasObras(CadastroObras obras[MAX])
 	
 	printf("\n>>>> Lista de obras <<<< %d\n", quantidadeObras);
 	
-	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISBN\t\t| ISSN\t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISBN \t\t| ISSN \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
 	for(i = 0; i < quantidadeObras; i++)
 	{
 		printf("\n %d", i);
-		printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %s\t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].isbn,obras[i].issn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+		printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].isbn,obras[i].issn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
 	}
 }
 
@@ -292,11 +292,11 @@ void ListarTodosLivros(int buscaCategoria, CadastroObras obras[MAX])
 		printf("Não existe essa categoria\n");
 	}
 	
-	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISBN \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISBN \t\t| ISSN \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
 	for(i = 0; i < quantidadeObras; i++)
 	{
 		if(obras[i].RouL == buscaCategoria){
-			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].isbn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].isbn, obras[i].issn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
 		}
 	}
 }
@@ -318,11 +318,11 @@ void ListarTodasRevistas(int buscaCategoria, CadastroObras obras[MAX])
 		printf("Não existe essa categoria\n");
 	}
 	
-	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISSN \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
+	printf("ITEM \t| TÍTULO \t\t| AUTOR \t\t| ISBN \t\t| ISSN \t\t| QUANTIDADE \t| ANO \t| EDIÇÃO \t| EDITORA \t\t| CAIXA");
 	for(i = 0; i < quantidadeObras; i++)
 	{
 		if(obras[i].RouL == buscaCategoria){
-			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].issn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
+			printf("\%d \t| %s \t\t| %s \t\t| %s \t\t| %s \t\t| %d \t| %d \t| %d \t| %s \t\t| %d", i + 1, obras[i].titulo, obras[i].autor, obras[i].isbn, obras[i].issn, obras[i].quantidade, obras[i].ano, obras[i].edicao, obras[i].editora, obras[i].caixa);
 		}
 	}
 }
